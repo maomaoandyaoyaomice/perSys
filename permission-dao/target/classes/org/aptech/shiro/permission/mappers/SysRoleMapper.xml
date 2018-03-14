@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.aptech.shiro.permission.dao.SysRoleDao">
+	<insert id="add" parameterType="org.aptech.shiro.permission.pojo.SysRole"
+		useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into Sys_Role(name,available)
+			values(#{name},#{available})
+	</insert>
+	
+	<update id="update" parameterType="org.aptech.shiro.permission.pojo.SysRole">
+		update Sys_Role set name = #{name},available = #{available}
+			where id = #{id}
+	</update>
+	
+	<delete id="deleteByIds" parameterType="java.lang.reflect.Array">
+		delete from Sys_Role where id in
+		<foreach collection="array" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<sql id="conditionSql">
+		<if test="condition != null">
+			<where>
+			</where>
+		</if>
+	</sql>
+	
+	<select id="getAll" resultType="org.aptech.shiro.permission.pojo.SysRole">
+		select * from Sys_Role
+	</select>
+	
+	<select id="getById" parameterType="int" resultType="org.aptech.shiro.permission.pojo.SysRole">
+		select * from Sys_Role where id = #{id}
+	</select>
+	
+	<select id="getListByCondition" resultType="org.aptech.shiro.permission.pojo.SysRole">
+		select * from Sys_Role
+			<include refid="conditionSql"></include>
+		order by ${column} ${orderBy}
+			limit #{start},#{limit}
+	</select>
+	<select id="getCountByCondition" resultType="int">
+		select count(1) from Sys_Role
+			<include refid="conditionSql"></include>
+	</select>
+</mapper>

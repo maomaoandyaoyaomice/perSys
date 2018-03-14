@@ -1,0 +1,7 @@
+org/aptech/shiro/permission/dao/SysUserDao.class
+org/aptech/shiro/permission/dao/SysRoleDao.class
+org/aptech/shiro/permission/dao/SysPermissionDao.class
+org/aptech/shiro/permission/pojo/SysRole.class
+org/aptech/shiro/permission/dao/CommonDao.class
+org/aptech/shiro/permission/pojo/SysPermission.class
+org/aptech/shiro/permission/pojo/SysUser.class
